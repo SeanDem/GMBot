@@ -58,5 +58,5 @@ class Courtney(Person):
     traits = ["Reliable", "Kind", "Trustworthy", "Fun", "Compassionate", "Friendly", ""]
     interests = ["Tennis", "Pickleball", "Philathapry", "Celebrities", "Vacation", "the 70s", "Retirement", "Florida"]
 
-class AllFriends:
+class People:
     List[Person]

@@ -30,7 +30,6 @@ def main():
     openAiEngine.generate(promptEngine.prompt, rand)
     
     
-    print("here")
     text = f"""
     {openAiEngine.responseText}
     \n\n{weatherEngine.weather}
@@ -42,11 +41,8 @@ def main():
     if bool(os.getenv("DEBUG")): 
         print(text)
    
-# schedule.every().day.at("00:44").do(main)
+schedule.every().day.at("00:44").do(main)
 
-# while True:
-#     schedule.run_pending()
-#     print("loop")
-#     time.sleep(1)
-    
-main()
+while True:
+    schedule.run_pending()
+    time.sleep(10)

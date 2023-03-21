@@ -41,7 +41,7 @@ def main():
     if bool(os.getenv("DEBUG")): 
         print(text)
    
-schedule.every().day.at("00:44").do(main)
+schedule.every().day.at("11:15").do(main)
 
 while True:
     schedule.run_pending()

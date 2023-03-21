@@ -1,0 +1,19 @@
+{
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "logprobs": null,
+        "text": "\n\nGood morning! Wishing you a day filled with peace, joy, and lots of love. Have a wonderful day!"
+      }
+    ],
+    "created": 1678067712,
+    "id": "cmpl-6quMCxKYnFeYL3bCLOr6VBMQtvs7B",
+    "model": "text-davinci-003",
+    "object": "text_completion",
+    "usage": {
+      "completion_tokens": 26,
+      "prompt_tokens": 8,
+      "total_tokens": 34
+    }
+  }

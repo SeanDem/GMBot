@@ -1,0 +1,10 @@
+{
+    "cSpell.words": [
+        "Laney",
+        "Philathapry",
+        "randomizer"
+    ],
+    "python.analysis.extraPaths": [
+        "./src"
+    ]
+}

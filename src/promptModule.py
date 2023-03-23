@@ -1,12 +1,13 @@
 from datetime import date
 import random
-from typing import List, Type
 
 from people import Person
 
 
 class PromptEngine:
-    def __init__(self, person : Person):
+    def __init__(self, person : Person, weather: str, news: str):
+        self.news = news
+        self.weather = weather
         self.person = person
         self.LOW_RAND = 10
         self.HIGH_RAND = 10
@@ -52,6 +53,14 @@ class PromptEngine:
     def poem(self):
         return f"In a new paragraph. Please include a poem for my friend"
     
+    @property
+    def weather(self):
+        return f"In a new paragraph. Please format todays weather weather properly. Here is todays weather {self.weather}."
+    
+    @property
+    def weather(self):
+        return f"In a new paragraph. Please format todays new headlines properly. Here is are some todays headlines {self.news}."
+
     
     def randomizer(self, percent = 5):
         return random.randint(0,10) <= percent

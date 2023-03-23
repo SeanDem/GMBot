@@ -41,8 +41,10 @@ def main():
     if bool(os.getenv("DEBUG")): 
         print(text)
    
-schedule.every().day.at("11:15").do(main)
+# schedule.every().day.at("11:15").do(main)
 
-while True:
-    schedule.run_pending()
-    time.sleep(10)
+# while True:
+#     schedule.run_pending()
+#     time.sleep(10)
+
+main()

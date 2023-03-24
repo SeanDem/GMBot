@@ -1,5 +1,5 @@
-from typing import List
-
+from typing import List, Union
+from enum import Enum
 class Person:
     name : str
     number: int
@@ -8,7 +8,8 @@ class Person:
     todayEvent : str
     traits : List[str]
     interests : List[str]
-    cords = tuple
+    cords : tuple
+    prompt: Enum["full", "half"]
 
 class Laney(Person):
     name = "Laney"
@@ -39,6 +40,7 @@ class Sean(Person):
     traits = ["Funny", "Smart", "Kinds", "Entrepreneur", "Cute", "Interesting"]
     interests = ["Sailing", "Gaming", "Gardening", "Finance", "Stocks", "Classic Rocks", "Programming", "Science"]
     cords = (42.334438, -71.041985)
+    prompt = "half"
 
 class Lauren(Person):
     name = "Lauren"

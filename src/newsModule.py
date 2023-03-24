@@ -1,13 +1,10 @@
 import requests
 from bs4 import BeautifulSoup
 
-# Define the URL of the news website you want to scrape
-
-
-class NewsSingleton:
+class NewsEngine:
     _url = "https://news.google.com/home?hl=en-US&gl=US&ceid=US:en"
     
-    def fetchNews(self) -> str:
+    def _fetchNews(self) -> str:
         response = requests.get(self._url)
         soup = BeautifulSoup(response.content, 'html.parser')
         stories = soup.find_all('a', class_='WwrzSb')
@@ -20,9 +17,9 @@ class NewsSingleton:
         return news
         
     def getNewsList(self):
-        return self.fetchNews()
+        return self._fetchNews()
     
     def getNewsString(self):
-        newsList = self.fetchNews()
+        newsList = self._fetchNews()
         return "- " + "\n- ".join(newsList)
     

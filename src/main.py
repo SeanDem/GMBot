@@ -4,42 +4,48 @@ import time
 import schedule
 from dotenv import load_dotenv
 from people import Lauren, Person, Sean, Laney, Kyle
-from textModule import TextEngine
-from openAIModule import OpenAiEngine
+from textModule import TwilioTextEngine
+from openAiModule import OpenAiEngine
 from promptModule import PromptEngine
 from weatherModule import WeatherEngine
 from newsModule import NewsEngine
 
 #########################
-person: Person = Laney()
+person: Person = Sean()
 #########################    
 
 def main():
     load_dotenv()
     rand = random.randint(400,600)/1000
     
-    promptEngine = PromptEngine(person)
     openAiEngine = OpenAiEngine()
-    textEngine = TextEngine()
-    weatherEngine = WeatherEngine(person)
+    twilioTextEngine = TwilioTextEngine()
+    weatherEngine = WeatherEngine()
     newsEngine = NewsEngine()
+    promptEngine =  PromptEngine()
+    weatherStr = weatherEngine.getWeatherString(person.cords)
+    newsStr = newsEngine.getNewsString()
     
     
-    weatherEngine.fetchWeather()
-    newsEngine.fetchNews()
-    openAiEngine.generate(promptEngine.prompt, rand)
+    if person.prompt == "full":
+        prompt = promptEngine.fullPrompt
+    else: prompt = promptEngine.halfPrompt
+
+    gptResponseStr = openAiEngine.getResponseText(prompt, rand)
     
-    
-    text = f"""
-    {openAiEngine.responseText}
-    \n\n{weatherEngine.weather}
-    \n\n{newsEngine.news}
-    """
-    textEngine.sendMessageTo(text, person.number)
-    
+    if person.prompt == "full":
+        text = f""" {gptResponseStr} """
+    else: 
+        text = f"""    
+        {gptResponseStr}
+        {newsStr}
+        {weatherStr}
+        """
+        
+    twilioTextEngine.sendMessageTo(text, person.number)
     
     if bool(os.getenv("DEBUG")): 
-        print(text)
+        print()
    
 # schedule.every().day.at("11:15").do(main)
 

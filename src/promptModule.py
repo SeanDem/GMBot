@@ -1,6 +1,4 @@
 from datetime import date
-import random
-
 from people import Person
 
 

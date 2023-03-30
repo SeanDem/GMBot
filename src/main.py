@@ -3,7 +3,7 @@ import random
 import time
 import schedule
 from dotenv import load_dotenv
-from people import Lauren, Person, Sean, Laney, Kyle
+from people import Lauren, Person, PromptType, Sean, Laney, Kyle
 from textModule import TwilioTextEngine
 from openAiModule import OpenAiEngine
 from promptModule import PromptEngine
@@ -11,7 +11,7 @@ from weatherModule import WeatherEngine
 from newsModule import NewsEngine
 
 #########################
-person: Person = Sean()
+person: Person = Laney()
 #########################    
 
 def main():
@@ -27,13 +27,14 @@ def main():
     newsStr = newsEngine.getNewsString()
     
     
-    if person.prompt == "full":
-        prompt = promptEngine.fullPrompt
-    else: prompt = promptEngine.halfPrompt
+    if person.promptType == PromptType.Full: 
+        prompt = promptEngine.getPrompt(person, weatherStr, newsStr)
+    else: 
+        prompt = promptEngine.getPrompt(person)
 
     gptResponseStr = openAiEngine.getResponseText(prompt, rand)
     
-    if person.prompt == "full":
+    if person.promptType == PromptType.Full:
         text = f""" {gptResponseStr} """
     else: 
         text = f"""    
@@ -45,12 +46,7 @@ def main():
     twilioTextEngine.sendMessageTo(text, person.number)
     
     if bool(os.getenv("DEBUG")): 
-        print()
-   
-# schedule.every().day.at("11:15").do(main)
+        print(text)
 
-# while True:
-#     schedule.run_pending()
-#     time.sleep(10)
-
-main()
+if __name__ == "__main__":
+    main()

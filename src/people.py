@@ -1,5 +1,10 @@
 from typing import List, Union
 from enum import Enum
+
+class PromptType(Enum):
+    Full = 1
+    half = 2  
+    
 class Person:
     name : str
     number: int
@@ -9,7 +14,7 @@ class Person:
     traits : List[str]
     interests : List[str]
     cords : tuple
-    prompt: Enum["full", "half"]
+    promptType: PromptType
 
 class Laney(Person):
     name = "Laney"
@@ -20,6 +25,8 @@ class Laney(Person):
     traits = ["Sweet", "Nice", "Kind", "Funny", "Beautiful"]
     interests = ["Film", "Cooking", "Boyfriend", "Books","Celebrities"]
     cords = (34.097852508492196, -118.31971204478285)
+    promptType = PromptType.Full
+    
 
 class Kyle(Person):
     name = "Kyle"
@@ -40,7 +47,8 @@ class Sean(Person):
     traits = ["Funny", "Smart", "Kinds", "Entrepreneur", "Cute", "Interesting"]
     interests = ["Sailing", "Gaming", "Gardening", "Finance", "Stocks", "Classic Rocks", "Programming", "Science"]
     cords = (42.334438, -71.041985)
-    prompt = "half"
+    promptType = PromptType.Full
+
 
 class Lauren(Person):
     name = "Lauren"
